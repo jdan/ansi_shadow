@@ -73,12 +73,15 @@ module AnsiShadow
     # result as a new Glyph
     #
     # @param [Glyph] other_glyph The other glyph
+    # @param [Integer] spacing The number of spaces to place between
+    #   characters
     # @return [Glyph]
-    def beside(other_glyph)
+    def beside(other_glyph, spacing: 1)
       grid = []
 
       [height, other_glyph.height].max.times do |y|
-        row_str = "#{row(y)} #{other_glyph.row(y)}"
+        whitespace = " " * spacing
+        row_str = "#{row(y)}#{whitespace}#{other_glyph.row(y)}"
         grid << row_str.rstrip.chars
       end
 

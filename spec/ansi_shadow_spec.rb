@@ -90,4 +90,56 @@ RSpec.describe AnsiShadow::Glyph do
               ██████
     TEXT
   end
+
+  it "can configure the spacing between characters beside each other" do
+    trunc_letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+       █████
+      ██   ██
+      ███████
+      ██   ██
+    TEXT
+
+    letter_b = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+      ██████
+      ██   ██
+      ██████
+      ██   ██
+      ██████
+    TEXT
+
+    expect(trunc_letter_a.beside(letter_b, spacing: 3).to_s).to eq <<~TEXT.chomp
+       █████    ██████
+      ██   ██   ██   ██
+      ███████   ██████
+      ██   ██   ██   ██
+                ██████
+    TEXT
+  end
+
+  it "can add shadows to characters placed next to each other" do
+    letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+       █████
+      ██   ██
+      ███████
+      ██   ██
+      ██   ██
+    TEXT
+
+    letter_b = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+      ██████
+      ██   ██
+      ██████
+      ██   ██
+      ██████
+    TEXT
+
+    expect(letter_a.beside(letter_b, spacing: 3).shadow.to_s).to eq <<~TEXT.chomp
+       █████╗   ██████╗
+      ██╔══██╗  ██╔══██╗
+      ███████║  ██████╔╝
+      ██╔══██║  ██╔══██╗
+      ██║  ██║  ██████╔╝
+      ╚═╝  ╚═╝  ╚═════╝
+    TEXT
+  end
 end
