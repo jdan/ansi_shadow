@@ -54,4 +54,40 @@ RSpec.describe AnsiShadow::Glyph do
       ╚═╝  ╚═╝
     TEXT
   end
+
+  it "can fetch a row for a given glyph" do
+    letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+       █████
+      ██   ██
+      ███████
+      ██   ██
+      ██   ██
+    TEXT
+
+    expect(letter_a.row(0)).to eq(" █████ ")
+  end
+
+  it "can place gylphs beside each other" do
+    trunc_letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+       █████
+      ██   ██
+      ███████
+      ██   ██
+    TEXT
+    letter_b = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+      ██████
+      ██   ██
+      ██████
+      ██   ██
+      ██████
+    TEXT
+
+    expect(trunc_letter_a.beside(letter_b).to_s).to eq <<~TEXT.chomp
+       █████  ██████
+      ██   ██ ██   ██
+      ███████ ██████
+      ██   ██ ██   ██
+              ██████
+    TEXT
+  end
 end

@@ -13,10 +13,13 @@ module AnsiShadow
     ##
     # @return [String]
     def to_s
-      @grid.map do |row|
-        # NOTE: Trim trailing white space from each row for consistency
-        row.join("").rstrip
-      end.join "\n"
+      (0...height)
+        # Grab the row
+        .map { |y| row(y) }
+        # Strip off whitespace from the right
+        .map(&:rstrip)
+        # Join lines
+        .join "\n"
     end
 
     ##
@@ -63,6 +66,34 @@ module AnsiShadow
       end
 
       Glyph.new grid
+    end
+
+    ##
+    # Places a glyph next to another glyph, and returns the
+    # result as a new Glyph
+    #
+    # @param [Glyph] other_glyph The other glyph
+    # @return [Glyph]
+    def beside(other_glyph)
+      grid = []
+
+      [height, other_glyph.height].max.times do |y|
+        row_str = "#{row(y)} #{other_glyph.row(y)}"
+        grid << row_str.rstrip.chars
+      end
+
+      Glyph.new grid
+    end
+
+    ##
+    # Generates the row of a glyph from a given y-coordinate,
+    # with its width matching the width of the entire glyph.
+    #
+    # @param [Integer] y_coord The y-coordinate of the glyph to fetch
+    # @return [String] The row of the glyph (or whitespace if out of
+    #   bounds), with its width fixed to the width of the entire glyph
+    def row(y_coord)
+      (@grid[y_coord] || []).join("").ljust(width, " ")
     end
 
     ##
