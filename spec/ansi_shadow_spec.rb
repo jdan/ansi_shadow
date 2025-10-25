@@ -1,11 +1,17 @@
 # frozen_string_literal: true
 
-RSpec.describe AnsiShadow do
-  it "has a version number" do
-    expect(AnsiShadow::VERSION).not_to be nil
-  end
+RSpec.describe AnsiShadow::Glyph do
+  it "recalls characters" do
+    glyph = AnsiShadow::Glyph.new <<~TEXT
+       x
+        x
+      xxx
+    TEXT
 
-  it "does something useful" do
-    expect(false).to eq(true)
+    expect(glyph.to_s).to eq <<~TEXT.chomp
+       █
+        █
+      ███
+    TEXT
   end
 end
