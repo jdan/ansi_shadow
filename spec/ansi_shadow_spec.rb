@@ -2,7 +2,7 @@
 
 RSpec.describe AnsiShadow::Glyph do
   it "recalls characters" do
-    glyph = AnsiShadow::Glyph.new <<~TEXT
+    glyph = AnsiShadow::Glyph.from_mono <<~TEXT
        x
         x
       xxx
