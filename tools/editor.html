@@ -92,12 +92,12 @@
             let output = '_ = AnsiShadow::Glyph.from_mono <<~TEXT.chomp\n'
 
             for (let row = 0; row < GRID_HEIGHT; row++) {
-                output += '  ';
+                let line = '  ';
                 for (let col = 0; col < GRID_WIDTH; col++) {
-                    output += checkboxes[row][col].checked ? FILLED : EMPTY;
+                    line += checkboxes[row][col].checked ? FILLED : EMPTY;
                 }
-                output = output.trimEnd();
-                output += '\n';
+                line = line.trimEnd();
+                output += line + '\n';
             }
 
             output += 'TEXT';
