@@ -156,6 +156,56 @@ module AnsiShadow
           ██████
         ████
       TEXT
+
+      TA = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+            ████
+          ██████████████
+        ████        ████
+              ████  ████
+                ████████
+                  ████
+              ██████
+      TEXT
+
+      CHI = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+                  ████
+          ██████████
+              ████
+        ████████████████
+              ████
+              ████
+          ██████
+      TEXT
+
+      TSU = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+        ██  ██    ████
+        ██  ██    ████
+        ██  ██    ████
+                  ████
+                  ████
+                ████
+            ██████
+      TEXT
+
+      TE = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+          ██████████
+        #{" "}
+        ██████████████
+              ██
+              ██
+            ████
+          ████
+      TEXT
+
+      TO = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+        ██
+        ██
+        ██████
+        ██  ████
+        ██    ████
+        ██      ██
+        ██
+      TEXT
     end
   end
 end
