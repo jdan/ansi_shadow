@@ -356,6 +356,36 @@ module AnsiShadow
             ██
               ██████
       TEXT
+
+      YA = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+            ██
+        ██████████████
+            ██    ████
+            ██  ████
+            ██
+            ██
+            ██
+      TEXT
+
+      YU = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+
+          ████████
+                ██
+                ██
+                ██
+                ██
+        ████████████
+      TEXT
+
+      YO = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+        ████████████
+                  ██
+                  ██
+          ██████████
+                  ██
+                  ██
+        ████████████
+      TEXT
     end
   end
   # rubocop:enable Metrics/ModuleLength
