@@ -6,6 +6,7 @@ module AnsiShadow
     # 8x7 Katakana gylphs for ANSI Shadow font
     #
     # Inspired by the sprites found in Pokémon Blue (JP)
+    # rubocop:disable Metrics/ModuleLength
     module Katakana
       A = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
         ████████████████
@@ -189,7 +190,7 @@ module AnsiShadow
 
       TE = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
           ██████████
-        #{" "}
+
         ██████████████
               ██
               ██
@@ -206,6 +207,56 @@ module AnsiShadow
         ██      ██
         ██
       TEXT
+
+      NA = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+                ████
+        ████████████████
+                ████
+                ████
+                ████
+              ████
+            ████
+      TEXT
+
+      NI = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+
+          ██████████
+
+
+
+        ██████████████
+      TEXT
+
+      NU = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+        ██████████████
+                    ██
+            ██    ████
+            ██  ████
+              ████
+            ████  ██
+          ████    ██
+      TEXT
+
+      NE = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+        ████████████
+                  ██
+                ████
+              ████
+          ██████████
+        ████  ██  ████
+        ██    ██    ██
+      TEXT
+
+      NO = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+                  ██
+                  ██
+                ████
+                ██
+              ████
+            ████
+        ██████
+      TEXT
     end
   end
+  # rubocop:enable Metrics/ModuleLength
 end
