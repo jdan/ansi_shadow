@@ -11,7 +11,10 @@ module AnsiShadow
     end
 
     def to_s
-      @grid.map(&:join).join "\n"
+      @grid.map do |row|
+        # NOTE: Trim trailing white space from each row for consistency
+        row.join("").rstrip
+      end.join "\n"
     end
 
     ##
@@ -21,6 +24,10 @@ module AnsiShadow
     # @param [number] px_x
     # @param [number] px_y
     def pixel(px_x, px_y)
+      # NOTE: In ruby, arr[-1] is the last element of the row, so we
+      # include an explicit check to reduce footguns
+      return nil if px_x.negative? || px_y.negative?
+
       @grid[px_y] && @grid[px_y][px_x]
     end
 
@@ -56,6 +63,53 @@ module AnsiShadow
       Glyph.new grid
     end
 
+    ##
+    # Adds a shadow to the glyph
+    # @return [Glyph]
+    def shadow
+      grid = []
+      (height + 1).times do |y|
+        row = []
+        (width + 1).times do |x|
+          row << shadow_at(x, y)
+        end
+        grid << row
+      end
+
+      shadow = Glyph.new(grid)
+      atop(shadow)
+    end
+
+    # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
+    def shadow_at(px_x, px_y)
+      case [
+        pixel(px_x - 1, px_y),
+        pixel(px_x - 1, px_y - 1),
+        pixel(px_x, px_y - 1)
+      ].map { |px| px_empty?(px) }
+
+      # [LEFT, ABOVE_LEFT, ABOVE]
+      when [true, true, true]
+        " "
+      when [true, true, false]
+        "╚"
+      when [true, false, true]
+        "╝"
+      when [true, false, false]
+        "═"
+      when [false, true, true]
+        "╗"
+      when [false, true, false]
+        # rare case?
+        "╬"
+      when [false, false, true]
+        "║"
+      when [false, false, false]
+        "╔"
+      end
+    end
+    # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity
+
     class << self
       ##
       # Converts a monocolor string into a glyph
@@ -73,12 +127,22 @@ module AnsiShadow
     private
 
     ##
+    # Determines if a pixel is "empty" (nil or whitespace)
+    #
+    # @param [String, nil] pixel
+    # @return [Boolean]
+    def px_empty?(pixel)
+      pixel.nil? || !(/\s/ =~ pixel).nil?
+    end
+
+    ##
     # "Stacks" a pixel on top of another
     #
     # @param [String, nil] px1
     # @param [String, nil] px2
+    # @return [String, nil]
     def stack_pixel(px1, px2)
-      if px1.nil? || /\s/ =~ px1
+      if px_empty?(px1)
         px2
       else
         px1

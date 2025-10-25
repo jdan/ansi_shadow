@@ -35,4 +35,23 @@ RSpec.describe AnsiShadow::Glyph do
       ███
     TEXT
   end
+
+  it "can generate shadows for glyphs" do
+    letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+       █████
+      ██   ██
+      ███████
+      ██   ██
+      ██   ██
+    TEXT
+
+    expect(letter_a.shadow.to_s).to eq <<~TEXT.chomp
+       █████╗
+      ██╔══██╗
+      ███████║
+      ██╔══██║
+      ██║  ██║
+      ╚═╝  ╚═╝
+    TEXT
+  end
 end
