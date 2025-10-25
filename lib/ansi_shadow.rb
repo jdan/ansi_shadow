@@ -2,6 +2,7 @@
 
 require_relative "ansi_shadow/version"
 require_relative "ansi_shadow/glyph"
+require_relative "ansi_shadow/font/katakana"
 
 module AnsiShadow
   class Error < StandardError; end
