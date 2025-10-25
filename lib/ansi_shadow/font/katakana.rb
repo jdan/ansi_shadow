@@ -149,7 +149,7 @@ module AnsiShadow
       TEXT
 
       SO = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
-        ████        ██
+        ██          ██
         ████      ████
           ████    ████
                 ████
@@ -455,6 +455,16 @@ module AnsiShadow
                   ████
                 ████
             ██████
+      TEXT
+
+      N = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+                    ██
+        ███       ████
+           ███    ████
+                ████
+              ████
+          ██████
+        ████
       TEXT
     end
   end
