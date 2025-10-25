@@ -100,7 +100,6 @@ module AnsiShadow
       when [false, true, true]
         "╗"
       when [false, true, false]
-        # rare case?
         "╬"
       when [false, false, true]
         "║"
