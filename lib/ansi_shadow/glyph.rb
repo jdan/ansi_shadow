@@ -10,6 +10,8 @@ module AnsiShadow
       @grid = grid
     end
 
+    ##
+    # @return [String]
     def to_s
       @grid.map do |row|
         # NOTE: Trim trailing white space from each row for consistency
@@ -48,7 +50,7 @@ module AnsiShadow
     # Stacks this glyph on top of another, and returns
     # the result as a new Glyph
     #
-    # @param [Glyph] The other glyph
+    # @param [Glyph] other_glyph The other glyph
     # @return [Glyph]
     def atop(other_glyph)
       grid = []
@@ -80,6 +82,11 @@ module AnsiShadow
       atop(shadow)
     end
 
+    ##
+    # Returns the "shadow character" at (x, y), based on the characters around it
+    # @param [Integer] px_x The x coordinate
+    # @param [Integer] px_y The y coordinate
+    # @return [String]
     # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
     def shadow_at(px_x, px_y)
       case [
@@ -112,7 +119,8 @@ module AnsiShadow
     class << self
       ##
       # Converts a monocolor string into a glyph
-      # @param [String]
+      # @param [String] str
+      # @return [Glyph]
       def from_mono(str)
         grid = []
         str.lines.each do |line|

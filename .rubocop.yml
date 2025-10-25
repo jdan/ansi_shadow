@@ -10,3 +10,6 @@ Style/StringLiteralsInInterpolation:
 Metrics/BlockLength:
   Exclude:
     - spec/ansi_shadow_spec.rb
+
+Style/DocumentationMethod:
+  Enabled: true
