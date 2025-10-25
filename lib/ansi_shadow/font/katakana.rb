@@ -478,6 +478,66 @@ module AnsiShadow
 
       TEXT
 
+      XTSU = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+
+
+
+        ██  ██  ██
+        ██  ██  ██
+                ██
+            ████
+      TEXT
+
+      XYA = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+
+
+          ██
+        ██████████
+          ██    ██
+          ██  ██
+          ██
+      TEXT
+
+      XI = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+
+
+              ██
+            ██
+        ██████
+            ██
+            ██
+      TEXT
+
+      XYU = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+
+
+
+          ██████
+              ██
+              ██
+        ██████████
+      TEXT
+
+      XE = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+
+
+
+         ████████
+            ██
+            ██
+        ██████████
+      TEXT
+
+      XYO = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+
+
+        ████████
+              ██
+        ████████
+              ██
+        ████████
+      TEXT
+
       KANA_MAP = {
         ア: A, イ: I, ウ: U, エ: E, オ: O,
         カ: KA, キ: KI, ク: KU, ケ: KE, コ: KO,
@@ -490,7 +550,8 @@ module AnsiShadow
         ラ: RA, リ: RI, ル: RU, レ: RE, ロ: RO,
         ワ: WA, ヲ: WO,
         ン: N,
-        ー: DASH
+        ー: DASH, ッ: XTSU,
+        ャ: XYA, ィ: XI, ュ: XYU, ェ: XE, ョ: XYO
       }.freeze
     end
   end
