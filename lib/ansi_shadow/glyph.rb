@@ -82,40 +82,6 @@ module AnsiShadow
       atop(shadow)
     end
 
-    ##
-    # Returns the "shadow character" at (x, y), based on the characters around it
-    # @param [Integer] px_x The x coordinate
-    # @param [Integer] px_y The y coordinate
-    # @return [String]
-    # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
-    def shadow_at(px_x, px_y)
-      case [
-        pixel(px_x - 1, px_y),
-        pixel(px_x - 1, px_y - 1),
-        pixel(px_x, px_y - 1)
-      ].map { |px| px_empty?(px) }
-
-      # [LEFT, ABOVE_LEFT, ABOVE]
-      when [true, true, true]
-        " "
-      when [true, true, false]
-        "╚"
-      when [true, false, true]
-        "╝"
-      when [true, false, false]
-        "═"
-      when [false, true, true]
-        "╗"
-      when [false, true, false]
-        "╬"
-      when [false, false, true]
-        "║"
-      when [false, false, false]
-        "╔"
-      end
-    end
-    # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity
-
     class << self
       ##
       # Converts a monocolor string into a glyph
@@ -155,5 +121,39 @@ module AnsiShadow
         px1
       end
     end
+
+    ##
+    # Returns the "shadow character" at (x, y), based on the characters around it
+    # @param [Integer] px_x The x coordinate
+    # @param [Integer] px_y The y coordinate
+    # @return [String]
+    # rubocop:disable Metrics/MethodLength, Metrics/CyclomaticComplexity
+    def shadow_at(px_x, px_y)
+      case [
+        pixel(px_x - 1, px_y),
+        pixel(px_x - 1, px_y - 1),
+        pixel(px_x, px_y - 1)
+      ].map { |px| px_empty?(px) }
+
+      # [LEFT, ABOVE_LEFT, ABOVE]
+      when [true, true, true]
+        " "
+      when [true, true, false]
+        "╚"
+      when [true, false, true]
+        "╝"
+      when [true, false, false]
+        "═"
+      when [false, true, true]
+        "╗"
+      when [false, true, false]
+        "╬"
+      when [false, false, true]
+        "║"
+      when [false, false, false]
+        "╔"
+      end
+    end
+    # rubocop:enable Metrics/MethodLength, Metrics/CyclomaticComplexity
   end
 end
