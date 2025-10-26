@@ -91,9 +91,9 @@ module AnsiShadow
       KE = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
             ████
             ████████████
-          ████    ████
-        ████      ████
-                  ████
+          ████     ███
+        ████       ███
+                   ███
                 ████
               ████
       TEXT
@@ -161,9 +161,9 @@ module AnsiShadow
       TA = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
             ████
           ██████████████
-        ████        ████
-              ████  ████
-                ████████
+        ████         ███
+              ████   ███
+                ████ ███
                   ████
               ██████
       TEXT
@@ -203,8 +203,8 @@ module AnsiShadow
         ██
         ██████
         ██  ████
-        ██    ████
-        ██      ██
+        ██    ██
+        ██
         ██
       TEXT
 
