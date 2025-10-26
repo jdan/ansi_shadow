@@ -96,7 +96,7 @@ module AnsiShadow
     # @return [String] The row of the glyph (or whitespace if out of
     #   bounds), with its width fixed to the width of the entire glyph
     def row(y_coord)
-      (@grid[y_coord] || []).join("").ljust(width, " ")
+      (@grid[y_coord] || []).join.ljust(width, " ")
     end
 
     ##
@@ -122,9 +122,8 @@ module AnsiShadow
       # @param [String] str
       # @return [Glyph]
       def from_mono(str)
-        grid = []
-        str.lines.each do |line|
-          grid << line.chomp.chars.map { |c| /\s/ =~ c ? " " : "█" }
+        grid = str.lines.map do |line|
+          line.chomp.chars.map { |c| /\s/ =~ c ? " " : "█" }
         end
 
         Glyph.new grid
