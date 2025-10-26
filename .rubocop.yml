@@ -2,6 +2,10 @@ AllCops:
   TargetRubyVersion: 3.1
   NewCops: enable
 
+plugins:
+  - rubocop-rake
+  - rubocop-rspec
+
 Style/StringLiterals:
   EnforcedStyle: double_quotes
 
@@ -11,6 +15,9 @@ Style/StringLiteralsInInterpolation:
 Metrics/BlockLength:
   Exclude:
     - spec/ansi_shadow_spec.rb
+
+RSpec/ExampleLength:
+  Enabled: false
 
 Style/DocumentationMethod:
   Enabled: true

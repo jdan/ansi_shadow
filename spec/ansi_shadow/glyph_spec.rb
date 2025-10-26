@@ -2,7 +2,7 @@
 
 RSpec.describe AnsiShadow::Glyph do
   it "recalls characters" do
-    glyph = AnsiShadow::Glyph.from_mono <<~TEXT
+    glyph = described_class.from_mono <<~TEXT
        x
         x
       xxx
@@ -16,13 +16,13 @@ RSpec.describe AnsiShadow::Glyph do
   end
 
   it "can stack glyphs" do
-    glider = AnsiShadow::Glyph.from_mono <<~TEXT
+    glider = described_class.from_mono <<~TEXT
        x
         x
       xxx
     TEXT
 
-    top_right_box = AnsiShadow::Glyph.new(
+    top_right_box = described_class.new(
       [
         " **".chars,
         " **".chars
@@ -37,7 +37,7 @@ RSpec.describe AnsiShadow::Glyph do
   end
 
   it "can generate shadows for glyphs" do
-    letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+    letter_a = described_class.from_mono <<~TEXT.chomp
        █████
       ██   ██
       ███████
@@ -56,7 +56,7 @@ RSpec.describe AnsiShadow::Glyph do
   end
 
   it "can fetch a row for a given glyph" do
-    letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+    letter_a = described_class.from_mono <<~TEXT.chomp
        █████
       ██   ██
       ███████
@@ -68,13 +68,13 @@ RSpec.describe AnsiShadow::Glyph do
   end
 
   it "can place gylphs beside each other" do
-    trunc_letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+    trunc_letter_a = described_class.from_mono <<~TEXT.chomp
        █████
       ██   ██
       ███████
       ██   ██
     TEXT
-    letter_b = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+    letter_b = described_class.from_mono <<~TEXT.chomp
       ██████
       ██   ██
       ██████
@@ -92,14 +92,14 @@ RSpec.describe AnsiShadow::Glyph do
   end
 
   it "can configure the spacing between characters beside each other" do
-    trunc_letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+    trunc_letter_a = described_class.from_mono <<~TEXT.chomp
        █████
       ██   ██
       ███████
       ██   ██
     TEXT
 
-    letter_b = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+    letter_b = described_class.from_mono <<~TEXT.chomp
       ██████
       ██   ██
       ██████
@@ -117,7 +117,7 @@ RSpec.describe AnsiShadow::Glyph do
   end
 
   it "can add shadows to characters placed next to each other" do
-    letter_a = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+    letter_a = described_class.from_mono <<~TEXT.chomp
        █████
       ██   ██
       ███████
@@ -125,7 +125,7 @@ RSpec.describe AnsiShadow::Glyph do
       ██   ██
     TEXT
 
-    letter_b = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+    letter_b = described_class.from_mono <<~TEXT.chomp
       ██████
       ██   ██
       ██████

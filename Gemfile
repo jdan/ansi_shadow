@@ -9,5 +9,7 @@ gem "irb"
 gem "rake", "~> 13.0"
 gem "rspec", "~> 3.0"
 gem "rubocop", "~> 1.21"
+gem "rubocop-rake", "~> 0.7.1"
+gem "rubocop-rspec", "~> 3.7"
 gem "simplecov", require: false, group: :test
 gem "yard", "~> 0.9.37"
