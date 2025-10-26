@@ -550,13 +550,48 @@ module AnsiShadow
         ███
       TEXT
 
+      GA = KA.beside(Dakuten)
+      GI = KI.beside(Dakuten)
+      GU = KU.beside(Dakuten)
+      GE = KE.beside(Dakuten)
+      GO = KO.beside(Dakuten)
+
+      ZA = SA.beside(Dakuten)
+      JI = SHI.beside(Dakuten)
+      ZU = SU.beside(Dakuten)
+      ZE = SE.beside(Dakuten)
+      ZO = SO.beside(Dakuten)
+
+      DA = TA.beside(Dakuten)
+      DI = CHI.beside(Dakuten)
+      DU = TSU.beside(Dakuten)
+      DE = TE.beside(Dakuten)
+      DO = TO.beside(Dakuten)
+
+      BA = HA.beside(Dakuten)
+      BI = HI.beside(Dakuten)
+      BU = HU.beside(Dakuten)
+      BE = HE.beside(Dakuten)
+      BO = HO.beside(Dakuten)
+
+      PA = HA.beside(Handakuten)
+      PI = HI.beside(Handakuten)
+      PU = HU.beside(Handakuten)
+      PE = HE.beside(Handakuten)
+      PO = HO.beside(Handakuten)
+
       KANA_MAP = {
         ア: A, イ: I, ウ: U, エ: E, オ: O,
         カ: KA, キ: KI, ク: KU, ケ: KE, コ: KO,
+        ガ: GA, ギ: GI, グ: GU, ゲ: GE, ゴ: GO,
         サ: SA, シ: SHI, ス: SU, セ: SE, ソ: SO,
+        ザ: ZA, ジ: JI, ズ: ZU, ゼ: ZE, ゾ: ZO,
         タ: TA, チ: CHI, ツ: TSU, テ: TE, ト: TO,
+        ダ: DA, ヂ: DI, ヅ: DU, デ: DE, ド: DO,
         ナ: NA, ニ: NI, ヌ: NU, ネ: NE, ノ: NO,
         ハ: HA, ヒ: HI, フ: HU, ヘ: HE, ホ: HO,
+        バ: BA, ビ: BI, ブ: BU, ベ: BE, ボ: BO,
+        パ: PA, ピ: PI, プ: PU, ペ: PE, ポ: PO,
         マ: MA, ミ: MI, ム: MU, メ: ME, モ: MO,
         ヤ: YA, ユ: YU, ヨ: YO,
         ラ: RA, リ: RI, ル: RU, レ: RE, ロ: RO,
