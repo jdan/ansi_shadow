@@ -9,7 +9,7 @@ module AnsiShadow
     end
 
     def to_s
-      @glyphs.inject(&:beside).to_s
+      @glyphs.inject { |text, glyph| text.beside(glyph, spacing: 2) }.to_s
     end
 
     def shadow
