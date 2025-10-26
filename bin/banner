@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+require "bundler/setup"
+require "ansi_shadow"
+
+raise "Usage -- banner STRING" unless ARGV[0]
+
+puts AnsiShadow::Text.from_str(ARGV[0]).shadow
