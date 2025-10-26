@@ -538,6 +538,18 @@ module AnsiShadow
         ████████
       TEXT
 
+      Dakuten = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+          █
+        █  █
+         █
+      TEXT
+
+      Handakuten = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+        ███
+        █ █
+        ███
+      TEXT
+
       KANA_MAP = {
         ア: A, イ: I, ウ: U, エ: E, オ: O,
         カ: KA, キ: KI, ク: KU, ケ: KE, コ: KO,
