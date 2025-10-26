@@ -277,7 +277,7 @@ module AnsiShadow
           ██████████
       TEXT
 
-      HU = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
+      FU = AnsiShadow::Glyph.from_mono <<~TEXT.chomp
         ██████████████
                   ████
                   ████
@@ -570,13 +570,13 @@ module AnsiShadow
 
       BA = HA.beside(Dakuten)
       BI = HI.beside(Dakuten)
-      BU = HU.beside(Dakuten)
+      BU = FU.beside(Dakuten)
       BE = HE.beside(Dakuten)
       BO = HO.beside(Dakuten)
 
       PA = HA.beside(Handakuten)
       PI = HI.beside(Handakuten)
-      PU = HU.beside(Handakuten)
+      PU = FU.beside(Handakuten)
       PE = HE.beside(Handakuten)
       PO = HO.beside(Handakuten)
 
@@ -589,7 +589,7 @@ module AnsiShadow
         タ: TA, チ: CHI, ツ: TSU, テ: TE, ト: TO,
         ダ: DA, ヂ: DI, ヅ: DU, デ: DE, ド: DO,
         ナ: NA, ニ: NI, ヌ: NU, ネ: NE, ノ: NO,
-        ハ: HA, ヒ: HI, フ: HU, ヘ: HE, ホ: HO,
+        ハ: HA, ヒ: HI, フ: FU, ヘ: HE, ホ: HO,
         バ: BA, ビ: BI, ブ: BU, ベ: BE, ボ: BO,
         パ: PA, ピ: PI, プ: PU, ペ: PE, ポ: PO,
         マ: MA, ミ: MI, ム: MU, メ: ME, モ: MO,
