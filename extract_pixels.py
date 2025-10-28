@@ -133,7 +133,7 @@ class PixelExtractor:
         grid_x = 32
 
         # Row y-positions (discovered through exhaustive scanning)
-        rows_y = [152, 168, 184, 200, 204, 214]
+        rows_y = [130, 138, 154, 170, 186, 202]
 
         # Horizontal spacing
         x_spacing = 24
@@ -184,10 +184,10 @@ def main():
 
     # Extract a sample character to verify
     print("\n" + "=" * 60)
-    print("Extracting sample character (A/ア) at (32, 152) - 8x7 pixels")
+    print("Extracting sample character (A/ア) at (32, 130) - 8x7 pixels")
     print("=" * 60)
 
-    sample = extractor.extract_character(32, 152, 8, 7)
+    sample = extractor.extract_character(32, 130, 8, 7)
     print("\nVisual preview:")
     extractor.visualize_character(sample)
 
