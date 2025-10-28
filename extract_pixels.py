@@ -108,46 +108,56 @@ class PixelExtractor:
 
     def extract_all_katakana(self):
         """Extract all katakana characters from the grid."""
-        # Katakana order in the Zelda grid (5 columns x 10 rows)
+        # Katakana order in the Zelda grid
+        # The grid has 6 rows with 9 columns each (some empty)
         katakana_labels = [
-            'A',  'I',  'U',  'E',  'O',
-            'KA', 'KI', 'KU', 'KE', 'KO',
-            'SA', 'SHI', 'SU', 'SE', 'SO',
-            'TA', 'CHI', 'TSU', 'TE', 'TO',
-            'NA', 'NI', 'NU', 'NE', 'NO',
-            'HA', 'HI', 'FU', 'HE', 'HO',
-            'MA', 'MI', 'MU', 'ME', 'MO',
-            'YA', 'XYA',  'YU', 'XYU',  'YO',
-            'RA', 'RI', 'RU', 'RE', 'RO',
-            'WA', 'WO', 'N',  'DASH',  'XTSU',
+            # Row 0 (y=152): 8 chars
+            'A',  'I',  'U',  'E',  'O',  None, 'KA', 'KI', 'KU',
+            # Row 1 (y=168): 6 chars
+            'KE', 'KO', 'SA', None, None, None, 'SHI', 'SU', 'SE',
+            # Row 2 (y=184): 9 chars
+            'SO', 'TA', 'CHI', 'TSU', 'TE', 'TO', 'NA', 'NI', 'NU',
+            # Row 3 (y=200): 8 chars
+            'NE', 'NO', 'HA', 'HI', 'FU', 'HE', 'HO', None, 'MA',
+            # Row 4 (y=204): 8 chars - small characters/dakuten
+            'MI', 'MU', 'ME', 'MO', 'YA', 'YU', 'YO', None, 'RA',
+            # Row 5 (y=214): 9 chars - includes special chars
+            'RI', 'RU', 'RE', 'RO', 'WA', 'WO', 'N', 'DASH', 'XTSU',
         ]
 
-        # Character cell dimensions (based on testing)
+        # Character cell dimensions
         cell_width = 8
         cell_height = 7
 
-        # Grid starting position (left panel katakana grid)
-        grid_x = 40
-        grid_y = 152
+        # Grid starting position
+        grid_x = 32
 
-        # Spacing between characters (includes character + gap)
+        # Row y-positions (discovered through exhaustive scanning)
+        rows_y = [152, 168, 184, 200, 204, 214]
+
+        # Horizontal spacing
         x_spacing = 24
-        y_spacing = 16
 
         results = {}
+        label_idx = 0
 
-        for idx, label in enumerate(katakana_labels):
-            if label == '?':
-                continue
+        for row_idx, y in enumerate(rows_y):
+            for col_idx in range(9):
+                if label_idx >= len(katakana_labels):
+                    break
 
-            row = idx // 5
-            col = idx % 5
+                label = katakana_labels[label_idx]
+                label_idx += 1
 
-            x = grid_x + (col * x_spacing)
-            y = grid_y + (row * y_spacing)
+                if label is None:
+                    continue
 
-            pixels = self.extract_character(x, y, cell_width, cell_height)
-            results[label] = pixels
+                x = grid_x + (col_idx * x_spacing)
+                if x + cell_width >= 256:
+                    break
+
+                pixels = self.extract_character(x, y, cell_width, cell_height)
+                results[label] = pixels
 
         return results
 
@@ -174,10 +184,10 @@ def main():
 
     # Extract a sample character to verify
     print("\n" + "=" * 60)
-    print("Extracting sample character (A/ア) at (40, 152) - 8x7 pixels")
+    print("Extracting sample character (A/ア) at (32, 152) - 8x7 pixels")
     print("=" * 60)
 
-    sample = extractor.extract_character(40, 152, 8, 7)
+    sample = extractor.extract_character(32, 152, 8, 7)
     print("\nVisual preview:")
     extractor.visualize_character(sample)
 
